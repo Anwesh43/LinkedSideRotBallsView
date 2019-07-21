@@ -222,4 +222,13 @@ class SideRotBallsView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SideRotBallsView {
+            val view : SideRotBallsView = SideRotBallsView(activity)
+            activity.setContentView(view)
+            return view 
+        }
+    }
 }
