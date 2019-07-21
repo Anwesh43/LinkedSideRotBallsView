@@ -53,6 +53,8 @@ fun Canvas.drawSRBNode(i : Int, scale : Float, paint : Paint) {
     val sc1 : Float = scale.divideScale(0, 2)
     val sc2 : Float = scale.divideScale(1, 2)
     paint.color = foreColor
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
     save()
     translate(gap * (i + 1), h / 10)
     paint.style = Paint.Style.STROKE
@@ -61,7 +63,7 @@ fun Canvas.drawSRBNode(i : Int, scale : Float, paint : Paint) {
     drawCircle(0f, 0f, r * scale, paint)
     save()
     rotate(90f * sc2)
-    drawSideRotBall(i, scale.divideScale(1, 2), size, size / rFactor, paint)
+    drawSideRotBall(i, sc1, size, size / rFactor, paint)
     restore()
     restore()
 }
