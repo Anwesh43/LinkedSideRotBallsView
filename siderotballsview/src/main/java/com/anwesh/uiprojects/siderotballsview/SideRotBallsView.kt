@@ -57,13 +57,16 @@ fun Canvas.drawSRBNode(i : Int, scale : Float, paint : Paint) {
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     save()
     translate(gap * (i + 1), h / 10)
+    if (i != 0) {
+        drawLine(-gap, 0f, 0f, 0f, paint)
+    }
     paint.style = Paint.Style.STROKE
     drawCircle(0f, 0f, r, paint)
     paint.style = Paint.Style.FILL
     drawCircle(0f, 0f, r * scale, paint)
     save()
     rotate(90f * sc2)
-    drawSideRotBall(i, sc1, size, size / rFactor, paint)
+    drawSideRotBall(i, sc1, gap, size / rFactor, paint)
     restore()
     restore()
 }
