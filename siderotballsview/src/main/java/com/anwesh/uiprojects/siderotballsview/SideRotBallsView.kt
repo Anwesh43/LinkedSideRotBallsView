@@ -198,4 +198,26 @@ class SideRotBallsView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SideRotBallsView) {
+
+        private val animator : Animator = Animator(view)
+        private val srb : SideRotBalls = SideRotBalls(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            srb.draw(canvas, paint)
+            animator.animate {
+                srb.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            srb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
